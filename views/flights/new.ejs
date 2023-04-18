@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/_navbar') %>
+    <h1>Create a new flight</h1>
+    <form action="/flights" method="POST">
+        <label for="airline">Airline:</label>
+        <select name="airline">
+            <option value="Southwest">Southwest</option>
+            <option value="American">American</option>
+            <option value="United">United</option>
+            <option value="JetBlue">JetBlue</option>
+        </select>
+        <br>
+        <%- include('../partials/_airport-select') %>
+        <br>
+        <label for="flightNo">Flight Number</label>
+        <input type="number" name="flightNo" min="10" max="9999">
+        <br>
+        <label for="departs">Departure Date:</label>
+        <input type="datetime-local" name="departs">
+        <br>
+        <input type="submit" value="Create Flight">
+    </form>
+</body>
+</html>

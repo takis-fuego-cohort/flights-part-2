@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/_navbar') %>
+    <section class="flight-details">
+        <h3><a href="/flights/<%=flight._id%>"><%=flight.flightNo%></a></h3>
+        <p>Leaving from <%=flight.airport%> on <%=flight.departs%></p>
+        <p>Serviced by <%=flight.airline%></p>
+    </section>
+    <a href="/flights/<%=flight._id%>/edit">Edit <%=flight.title%></a>
+    <form action="/flights/<%=flight._id%>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete <%=flight.title%>">
+    </form>
+    <h3>Add a destination</h3>
+    <form action="/flights/<%=flight._id%>/destinations" method="POST" id="add-destination-form">
+        <%- include('../partials/_airport-select') %>
+        <br>
+        <label for="arrival">Arrival:</label>
+        <input type="datetime-local" name="arrival">
+        <br>
+        <input type="submit" value="Add Destination">
+    </form>
+    <% flight.destinations.forEach((destination)=>{ %>
+        <section class="destination-detail">
+            <h5><%=destination.airport%></h5>
+            <p>Arrives at <%=destination.arrival%></p>
+        </section>
+    <% }) %>
+</body>
+</html>
